@@ -32,30 +32,42 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
+        <mysql.version>5.1.20</mysql.version>
+        <HikariCP.version>2.7.8</HikariCP.version>
+
         <SpingDateRedis.version>2.1.1.RELEASE</SpingDateRedis.version>
         <SpingDateSessionRedis.version>2.1.1.RELEASE</SpingDateSessionRedis.version>
         <springboot.maven.version>2.1.1.RELEASE</springboot.maven.version>
 
+        <CommonPool2.version>2.5.0</CommonPool2.version>
+        <CommonLang3.version>3.7</CommonLang3.version>
+        <CommonIo.version>2.6</CommonIo.version>
+        <CommonConfig.version>2.4</CommonConfig.version>
+        <CommonDbutil.version>1.7</CommonDbutil.version>
+        <Fastjson.version>1.2.54</Fastjson.version>
+
         <javamelody.version>1.75.0</javamelody.version>
-        <jfinal.version>3.4</jfinal.version>
+
+        <jfinal.version>3.6</jfinal.version>
         <jfinal-ext3.version>3.0.6</jfinal-ext3.version>
         <guava.version>24.1-jre</guava.version>
 
-        <mysql.version>5.1.20</mysql.version>
-        <HikariCP.version>2.7.8</HikariCP.version>
+
         <Swagger.version>2.0.0.RELEASE</Swagger.version>
         <Junit.version>4.12</Junit.version>
-        <Lombok.version>1.16.20</Lombok.version>
+        <Lombok.version>1.18.0</Lombok.version>
         <Contiperf.version>2.3.4</Contiperf.version>
         <Jaxb.version>2.3.0</Jaxb.version>
-        <CommonPool2.version>2.5.0</CommonPool2.version>
-        <CommonLang3.version>3.7</CommonLang3.version>
         <Fst.version>2.57</Fst.version>
         <Servlet.version>3.1.0</Servlet.version>
         <logstash.version>5.1</logstash.version>
         <jsets-shiro.version>1.0.4</jsets-shiro.version>
         <logback-kafka-appender.version>0.1.0</logback-kafka-appender.version>
         <jsoup.version>1.11.3</jsoup.version>
+        <freemarker.version>2.3.28</freemarker.version>
+
+        <commonmark.version>0.12.1</commonmark.version>
+        <emoji.version>3.2.0</emoji.version>
 
     </properties>
 
@@ -109,13 +121,16 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
         </dependency>
+
         <!--权限认证-->
         <!--<dependency>-->
             <!--<groupId>org.apache.shiro</groupId>-->
             <!--<artifactId>shiro-spring-boot-web-starter</artifactId>-->
             <!--<version>${shiro.version}</version>-->
         <!--</dependency>-->
-        <!--cache--><!--redis依赖添加-->
+        <!--cache-->
+
+        <!--redis依赖添加-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
@@ -170,6 +185,30 @@
             <artifactId>commons-lang3</artifactId>
             <version>${CommonLang3.version}</version>
         </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${CommonIo.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-configuration2 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-configuration2</artifactId>
+            <version>${CommonConfig.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/commons-dbutils/commons-dbutils -->
+        <dependency>
+            <groupId>commons-dbutils</groupId>
+            <artifactId>commons-dbutils</artifactId>
+            <version>${CommonDbutil.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${Fastjson.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>de.ruedigermoeller</groupId>
             <artifactId>fst</artifactId>
@@ -268,6 +307,32 @@
             <version>${logback-kafka-appender.version}</version>
             <scope>runtime</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>${freemarker.version}</version>
+        </dependency>
+
+
+        <!--markdown to html-->
+        <dependency>
+            <groupId>com.atlassian.commonmark</groupId>
+            <artifactId>commonmark</artifactId>
+            <version>${commonmark.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.atlassian.commonmark</groupId>
+            <artifactId>commonmark-ext-gfm-tables</artifactId>
+            <version>${commonmark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vdurmont</groupId>
+            <artifactId>emoji-java</artifactId>
+            <version>${emoji.version}</version>
+        </dependency>
+        <!--markdown to html end-->
     </dependencies>
 
     <!-- Repositories -->
@@ -324,7 +389,7 @@
                     <archive>
                         <manifest>
                             <!-- 主函数的入口 -->
-                            <mainClass>com.wixct.pachong.Application</mainClass>
+                            <mainClass>com.wixct.blogapi.Application</mainClass>
                             <!-- 打包时 MANIFEST.MF文件不记录的时间戳版本 -->
                             <useUniqueVersions>false</useUniqueVersions>
                             <addClasspath>true</addClasspath>
@@ -349,7 +414,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.wixct.pachong.Application</mainClass>
+                    <mainClass>com.wixct.blogapi.Application</mainClass>
                 </configuration>
             </plugin>
         </plugins>

@@ -18,7 +18,7 @@ spring:
 javamelody:
   #advisor-auto-proxy-creator-enabled: false
   init-parameters:
-    log: true
+    log: false
     url-exclude-pattern: (/webjars/.*|/static/.*|/css/.*|/images/.*|/fonts/.*|/js/.*)
     authorized-users: admin:admin
     storage-directory: /tmp/javamelody

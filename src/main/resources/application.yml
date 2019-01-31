@@ -1,6 +1,8 @@
 spring:
   profiles:
     active: dev
+  freemarker:
+    check-template-location: false
   datasource:
     ds1:
       driver-class-name: com.mysql.jdbc.Driver

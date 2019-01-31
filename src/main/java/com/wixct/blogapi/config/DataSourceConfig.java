@@ -1,6 +1,8 @@
 package com.wixct.blogapi.config;
 
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
+import com.wixct.blogapi.jfinal.model._MappingKit;
+import com.wixct.blogapi.jfinal.model._MappingKit2;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
@@ -9,8 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Primary;
-import com.wixct.blogapi.jfinal.model._MappingKit;
-import com.wixct.blogapi.jfinal.model._MappingKit2;
 
 import javax.sql.DataSource;
 
@@ -56,6 +56,7 @@ public class DataSourceConfig {
     @DependsOn("ds1")
     public ActiveRecordPlugin activeFirstDatasource() {
         ActiveRecordPlugin plugin = new ActiveRecordPlugin("ds1",firstDataSource());
+        plugin.setShowSql(true);
         _MappingKit.mapping(plugin);
         plugin.start();
         return plugin;

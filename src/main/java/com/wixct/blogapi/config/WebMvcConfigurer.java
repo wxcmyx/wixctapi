@@ -7,13 +7,30 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+
+//    /** 解决跨域问题 **/
+//    public void addCorsMappings(CorsRegistry registry) ;
+//    /** 添加拦截器 **/
+//    void addInterceptors(InterceptorRegistry registry);
+//    /** 这里配置视图解析器 **/
+//    void configureViewResolvers(ViewResolverRegistry registry);
+//    /** 配置内容裁决的一些选项 **/
+//    void configureContentNegotiation(ContentNegotiationConfigurer configurer);
+//    /** 视图跳转控制器 **/
+//    void addViewControllers(ViewControllerRegistry registry);
+//    /** 静态资源处理 **/
+//    void addResourceHandlers(ResourceHandlerRegistry registry);
+//    /** 默认静态资源处理器 **/
+//    void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer);
 
 /**
  * 配置spring mvc
  */
 @Configuration
-public class WebMvcConfigurer {
-
+public class WebMvcConfigurer extends WebMvcConfigurationSupport {
     /**
      * 设置错误页面
      */
@@ -61,22 +78,19 @@ public class WebMvcConfigurer {
      * 配置cors跨域访问
      * @return
      */
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/**");
-            }
-        };
+    @Override
+    public void addCorsMappings(CorsRegistry registry){
+        registry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowCredentials(true);
     }
-
     /**
      * 注册错误页面
      * @return
      */
-    @Bean
-    public ErrorPageRegistrar errorPageRegistrar(){
-        return new MyErrorPageRegistrar();
-    }
+//    @Bean
+//    public ErrorPageRegistrar errorPageRegistrar(){
+//        return new MyErrorPageRegistrar();
+//    }
 
 }

@@ -1,0 +1,24 @@
+Table: t_contents
+---------------+------------------+------+-----+---------+---------
+ Field         | Type             | Null | Key | Default | Remarks 
+---------------+------------------+------+-----+---------+---------
+ cid           | INT UNSIGNED(10) | NO   | PRI |         |         
+ title         | VARCHAR(200)     | YES  |     |         |         
+ slug          | VARCHAR(200)     | YES  |     |         |         
+ created       | INT UNSIGNED(10) | YES  |     | 0       |         
+ modified      | INT UNSIGNED(10) | YES  |     | 0       |         
+ content       | TEXT(65535)      | YES  |     |         | 内容文字    
+ author_id     | INT UNSIGNED(10) | YES  |     | 0       |         
+ type          | VARCHAR(16)      | YES  |     | post    |         
+ status        | VARCHAR(16)      | YES  |     | publish |         
+ tags          | VARCHAR(200)     | YES  |     |         |         
+ categories    | VARCHAR(200)     | YES  |     |         |         
+ hits          | INT UNSIGNED(10) | YES  |     | 0       |         
+ likes         | INT UNSIGNED(10) | YES  |     | 0       | 喜欢人数    
+ comments_num  | INT UNSIGNED(10) | YES  |     | 0       |         
+ allow_comment | BIT              | YES  |     | 1       |         
+ allow_ping    | BIT              | YES  |     | 1       |         
+ allow_feed    | BIT              | YES  |     | 1       |         
+ introduction  | TEXT(65535)      | YES  |     |         |         
+---------------+------------------+------+-----+---------+---------
+

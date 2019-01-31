@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true">
     <springProperty name="kafkaLogName" scope="context" source="logback.kafka.logName" defaultValue="test"/>
-    <property scope="context" name="LOG_HOME" value=".logs/app"/>
+    <property scope="context" name="LOG_HOME" value="/datas/wixctapi/logs"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -33,7 +33,7 @@
         <topic>${kafkaLogName}</topic>
         <keyingStrategy class="com.github.danielwegener.logback.kafka.keying.HostNameKeyingStrategy"/>
         <deliveryStrategy class="com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy"/>
-        <producerConfig>bootstrap.servers=192.168.48.181:9092</producerConfig>
+        <producerConfig>bootstrap.servers=127.0.0.1:9092</producerConfig>
     </appender>
 
     <logger name="org.sidao" level="DEBUG"/>
@@ -55,9 +55,9 @@
     <logger name="org.hibernate.validator" level="WARN"/>
     <logger name="org.hibernate" level="WARN"/>
     <logger name="org.hibernate.ejb.HibernatePersistence" level="OFF"/>
-    <logger name="org.springframework.web" level="INFO"/>
-    <logger name="org.springframework.security" level="WARN"/>
-    <logger name="org.springframework.cache" level="WARN"/>
+    <logger name="org.springframework" level="INFO"/>
+    <!--<logger name="org.springframework.security" level="WARN"/>-->
+    <!--<logger name="org.springframework.cache" level="WARN"/>-->
     <logger name="org.thymeleaf" level="WARN"/>
     <logger name="org.xnio" level="WARN"/>
     <logger name="springfox" level="WARN"/>
@@ -71,19 +71,36 @@
     <logger name="jdbc.audit" level="ERROR"/>
     <logger name="jdbc.sqltiming" level="ERROR"/>
     <logger name="jdbc.sqlonly" level="INFO"/>
+    <logger name="org.mongodb" level="INFO"/>
+    <logger name="io.netty" level="INFO"/>
+    <logger name="net.bull" level="INFO"/>
+    <logger name="io.lettuce" level="INFO"/>
 
     <springProfile name="prod">
+        <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_HOME}/pachong.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <FileNamePattern>${LOG_HOME}/pachong.%d{yyyy-MM-dd}.log.gz
+                </FileNamePattern>
+                <!-- keep 20 days' worth of history -->
+                <maxHistory>20</maxHistory>
+            </rollingPolicy>
+            <encoder>
+                <!-- %-40(%-35logger{35}:%-4line) -->
+                <Pattern>[%date{yyyy-MM-dd HH:mm:ss}] [%-5level][%thread] [%logger:%line] --%mdc{client} %msg%n</Pattern>
+            </encoder>
+        </appender>
         <root level="WARN">
-            <appender-ref ref="KafkaAppender"/>
+            <!--<appender-ref ref="KafkaAppender"/>-->
             <appender-ref ref="STDOUT"/>
+            <appender-ref ref="FILE"/>
         </root>
     </springProfile>
 
 
     <springProfile name="dev">
-        <root level="INFO">
+        <root level="DEBUG">
             <appender-ref ref="CONSOLE"/>
-
         </root>
     </springProfile>
 
