@@ -55,18 +55,22 @@ public class DataSourceConfig {
     @Bean
     @DependsOn("ds1")
     public ActiveRecordPlugin activeFirstDatasource() {
-        ActiveRecordPlugin plugin = new ActiveRecordPlugin("ds1",firstDataSource());
-        plugin.setShowSql(true);
-        _MappingKit.mapping(plugin);
-        plugin.start();
-        return plugin;
+        ActiveRecordPlugin arp = new ActiveRecordPlugin("ds1",firstDataSource());
+        arp.getEngine().setToClassPathSourceFactory();
+//        arp.addSqlTemplate("/sql/all_sqls.sql");
+        arp.setShowSql(true);
+        _MappingKit.mapping(arp);
+        arp.start();
+        return arp;
     }
     @Bean
     @DependsOn("ds2")
     public ActiveRecordPlugin activeSecordDatasource() {
-        ActiveRecordPlugin plugin = new ActiveRecordPlugin("ds2",secondDataSource());
-        _MappingKit2.mapping(plugin);
-        plugin.start();
-        return plugin;
+        ActiveRecordPlugin arp2 = new ActiveRecordPlugin("ds2",secondDataSource());
+        arp2.getEngine().setToClassPathSourceFactory();
+//        arp2.addSqlTemplate("/sql2/all_sqls.sql");
+        _MappingKit2.mapping(arp2);
+        arp2.start();
+        return arp2;
     }
 }

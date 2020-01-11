@@ -1,10 +1,10 @@
 /**
  * 
  */
-package com.wixct.blogapi.jfinal.gen.tool;
+package gen.tool;
 
 import com.jfinal.plugin.activerecord.generator.TableMeta;
-import com.wixct.blogapi.jfinal.gen._JFinalQSGenerator;
+import gen._JFinalQSGenerator;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;

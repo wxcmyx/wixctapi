@@ -1,4 +1,4 @@
-package com.wixct.blogapi.jfinal.gen.tool;
+package gen.tool;
 
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -11,8 +11,9 @@ import java.util.Map;
 
 public abstract class AbstractGenerator implements InterfaceGenerator {
 
+	@Override
 	public void generate(String templateFileName, Map data,
-			String fileName) {
+						 String fileName) {
 		try {
 			String templateFileDir=templateFileName.substring(0, templateFileName.lastIndexOf("/"));
 			String templateFile=templateFileName.substring(templateFileName.lastIndexOf("/"), templateFileName.length());

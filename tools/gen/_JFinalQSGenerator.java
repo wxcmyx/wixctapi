@@ -1,11 +1,10 @@
-package com.wixct.blogapi.jfinal.gen;
+package gen;
 
 import com.jfinal.kit.PathKit;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
-import com.jfinal.plugin.activerecord.generator.Generator;
 import com.jfinal.plugin.activerecord.generator.TableMeta;
-import com.wixct.blogapi.jfinal.gen.tool.CodingNowGo;
+import gen.tool.CodingNowGo;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.commons.lang3.StringUtils;
 

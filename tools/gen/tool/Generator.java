@@ -1,4 +1,4 @@
-package com.wixct.blogapi.jfinal.gen.tool;
+package gen.tool;
 
 import java.util.Map;
 

@@ -2,6 +2,8 @@ package com.wixct.blogapi;
 
 import com.alibaba.fastjson.JSON;
 import com.wixct.blogapi.jfinal.model.Contents;
+import com.wixct.blogapi.web.rest.Result;
+import org.springframework.http.HttpStatus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +15,10 @@ import java.util.Map;
  */
 public class DbtestMain {
     public static void main(String[] args) {
+        System.out.println(new Result().failure().setErcode("404").toJsonString());
+        System.out.println(HttpStatus.BAD_REQUEST);
+    }
+    public static void main1(String[] args) {
         DbUtils.initDb();
 //        Record r=Db.findFirst("select * from t_contents a where (type='post' and  status='publish') and cid=2");
 //        System.out.print(r);

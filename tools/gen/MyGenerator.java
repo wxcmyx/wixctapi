@@ -1,4 +1,4 @@
-package com.wixct.blogapi.jfinal.gen;
+package gen;
 
 import com.jfinal.plugin.activerecord.generator.BaseModelGenerator;
 import com.jfinal.plugin.activerecord.generator.Generator;
@@ -6,8 +6,6 @@ import com.jfinal.plugin.activerecord.generator.ModelGenerator;
 import com.jfinal.plugin.activerecord.generator.TableMeta;
 
 import javax.sql.DataSource;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MyGenerator extends Generator {

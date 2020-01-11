@@ -1,5 +1,7 @@
 package com.wixct.blogapi.config;
 
+import com.jfinal.template.ext.spring.JFinalViewResolver;
+import com.jfinal.template.source.ClassPathSourceFactory;
 import org.springframework.boot.web.server.ErrorPage;
 import org.springframework.boot.web.server.ErrorPageRegistrar;
 import org.springframework.boot.web.server.ErrorPageRegistry;
@@ -7,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 
@@ -30,7 +31,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * 配置spring mvc
  */
 @Configuration
-public class WebMvcConfigurer extends WebMvcConfigurationSupport {
+public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
+
     /**
      * 设置错误页面
      */
@@ -38,8 +40,8 @@ public class WebMvcConfigurer extends WebMvcConfigurationSupport {
 
         @Override
         public void registerErrorPages(ErrorPageRegistry registry) {
-            registry.addErrorPages(new ErrorPage(HttpStatus.BAD_REQUEST, "/error/400"));
-            registry.addErrorPages(new ErrorPage(HttpStatus.UNAUTHORIZED, "/error/401"));
+            registry.addErrorPages(new ErrorPage(HttpStatus.BAD_REQUEST, "/error/"+HttpStatus.BAD_REQUEST.value()));
+            registry.addErrorPages(new ErrorPage(HttpStatus.UNAUTHORIZED, "/error/"+HttpStatus.UNAUTHORIZED.value()));
             registry.addErrorPages(new ErrorPage(HttpStatus.FORBIDDEN, "/error/403"));
             registry.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/error/404"));
             registry.addErrorPages(new ErrorPage(HttpStatus.METHOD_NOT_ALLOWED, "/error/405"));
@@ -80,17 +82,39 @@ public class WebMvcConfigurer extends WebMvcConfigurationSupport {
      */
     @Override
     public void addCorsMappings(CorsRegistry registry){
+//        System.out.println("进入跨域设置也么！！");
         registry.addMapping("/**")
                 .allowedOrigins("*")
                 .allowCredentials(true);
     }
+    @Bean(name = "jfinalViewResolver")
+    public JFinalViewResolver getJFinalViewResolver() {
+        JFinalViewResolver jfr = new JFinalViewResolver();
+        // setDevMode 配置放在最前面
+        jfr.setDevMode(true);
+
+        // 使用 ClassPathSourceFactory 从 class path 与 jar 包中加载模板文件
+        jfr.setSourceFactory(new ClassPathSourceFactory());
+
+        // 在使用 ClassPathSourceFactory 时要使用 setBaseTemplatePath
+        // 代替 jfr.setPrefix("/view/")
+        JFinalViewResolver.engine.setBaseTemplatePath("/view/");
+
+        jfr.setSuffix(".html");
+        jfr.setContentType("text/html;charset=UTF-8");
+        jfr.setOrder(0);
+//        jfr.addSharedFunction("/view/common/_layout.html");
+//        jfr.addSharedFunction("/view/common/_paginate.html");
+        return jfr;
+    }
+
     /**
      * 注册错误页面
      * @return
      */
-//    @Bean
-//    public ErrorPageRegistrar errorPageRegistrar(){
-//        return new MyErrorPageRegistrar();
-//    }
+    @Bean
+    public ErrorPageRegistrar errorPageRegistrar(){
+        return new MyErrorPageRegistrar();
+    }
 
 }

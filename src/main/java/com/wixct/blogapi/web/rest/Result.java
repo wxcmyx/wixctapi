@@ -1,5 +1,7 @@
 package com.wixct.blogapi.web.rest;
 
+import com.alibaba.fastjson.JSON;
+
 import java.util.HashMap;
 
 /**
@@ -506,6 +508,10 @@ public class Result extends HashMap {
     public Result setData(Object data) {
         this.put("data",data);
         return this;
+    }
+
+    public String toJsonString(){
+        return JSON.toJSONString(this);
     }
 
 }

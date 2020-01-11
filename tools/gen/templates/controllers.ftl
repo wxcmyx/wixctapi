@@ -3,6 +3,7 @@ package ${globalPackage?lower_case}.web.${modelName?lower_case};
 
 import ${globalPackage?lower_case}.web.util.DateUtil;
 import ${globalPackage?lower_case}.jfinal.model.${modelName};
+import ${globalPackage?lower_case}.common.BaseController;
 
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Page;
@@ -27,7 +28,7 @@ import java.util.Map;
  */
 @Api(tags="${modelName}")
 @RestController
-public class ${modelName}Controller extends Controller {
+public class ${modelName}Controller extends BaseController {
 
 	/**
 	* Logger for this class

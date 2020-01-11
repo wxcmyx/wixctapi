@@ -1,4 +1,4 @@
-package com.wixct.blogapi.jfinal.gen;
+package gen;
 
 import com.jfinal.plugin.activerecord.generator.MetaBuilder;
 import com.jfinal.plugin.activerecord.generator.TableMeta;
