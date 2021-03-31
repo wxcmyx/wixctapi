@@ -50,7 +50,7 @@
 
         <jfinal.version>3.6</jfinal.version>
         <jfinal-ext3.version>3.0.6</jfinal-ext3.version>
-        <guava.version>24.1-jre</guava.version>
+        <guava.version>29.0-jre</guava.version>
 
 
         <Swagger.version>2.0.0.RELEASE</Swagger.version>
