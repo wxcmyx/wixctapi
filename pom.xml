@@ -48,7 +48,7 @@
 
         <javamelody.version>1.75.0</javamelody.version>
 
-        <jfinal.version>3.6</jfinal.version>
+        <jfinal.version>4.9.11</jfinal.version>
         <jfinal-ext3.version>3.0.6</jfinal-ext3.version>
         <guava.version>24.1-jre</guava.version>
 
