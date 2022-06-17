@@ -44,7 +44,7 @@
         <CommonIo.version>2.6</CommonIo.version>
         <CommonConfig.version>2.4</CommonConfig.version>
         <CommonDbutil.version>1.7</CommonDbutil.version>
-        <Fastjson.version>1.2.56</Fastjson.version>
+        <Fastjson.version>1.2.83</Fastjson.version>
 
         <javamelody.version>1.75.0</javamelody.version>
 
