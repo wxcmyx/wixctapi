@@ -32,7 +32,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <mysql.version>5.1.20</mysql.version>
+        <mysql.version>8.0.28</mysql.version>
         <HikariCP.version>3.3.0</HikariCP.version>
 
         <SpingDateRedis.version>${spring-data-releasetrain.version}</SpingDateRedis.version>
